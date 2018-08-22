@@ -46,4 +46,20 @@ async function createCourse(){
 	const result = await course.save();
 	console.log(result);
 }
-createCourse();
+
+async function getCourses(){
+	//retriving objects from database
+	// .find() method returns a document query object which islike promise
+	// hence we can await it ,adding more filters using find limit sort
+	const coursesdata = await Course
+		.find({ author:'mosh'})
+		.limit(10)
+		.sort({ name:-1 })
+		.select({name:1 , tags:1});
+	console.log(coursesdata);
+}
+
+// run when you want to add to db
+// createCourse();
+// run when you want to retrive from db
+getCourses();
