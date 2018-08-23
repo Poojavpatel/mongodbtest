@@ -1,3 +1,4 @@
+ /* Add data to MongoDB database */
  /*jshint esversion: 6 */
 const mongoose = require('mongoose');
 
@@ -33,9 +34,9 @@ const Course = mongoose.model( 'Course' , CourseSchema);
 async function createCourse(){
 	// this course is object of class Course
 	const course = new Course({
-		name:"React course",
+		name:"Photoshop course",
 		author:"Pooja",
-		tags:['react','frontend'],
+		tags:['photoshop','design'],
 		isPublished:true
 	});
 
@@ -47,19 +48,7 @@ async function createCourse(){
 	console.log(result);
 }
 
-async function getCourses(){
-	//retriving objects from database
-	// .find() method returns a document query object which islike promise
-	// hence we can await it ,adding more filters using find limit sort
-	const coursesdata = await Course
-		.find({ author:'mosh'})
-		.limit(10)
-		.sort({ name:-1 })
-		.select({name:1 , tags:1});
-	console.log(coursesdata);
-}
-
 // run when you want to add to db
-// createCourse();
-// run when you want to retrive from db
-getCourses();
+createCourse();
+
+/* To run $node connection.js */

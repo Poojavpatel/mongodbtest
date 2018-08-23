@@ -21,7 +21,7 @@ const Course = mongoose.model( 'Course' , CourseSchema); // schema to model
 async function getCourses(){
 	const coursesdata = await Course
         .find({isPublished:true})
-        .or([{price:{ $gte:15 }} , {name:/.*by.*/}])
+        .or([{price:{ $gte:15 }} , {namep:/.*by.*/}])
 	console.log(coursesdata);
 }
 
