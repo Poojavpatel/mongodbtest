@@ -26,7 +26,7 @@ async function updateCourse(id) {
     //FindById()
     //Modify its properties
     //save()
-    const course = await Course.findById(id);
+   /* const course = await Course.findById(id);
     if(!course) return;
     course.set({
         isPublished:false,
@@ -34,15 +34,22 @@ async function updateCourse(id) {
         name:"Angular course"
     });
     const result = await course.save();
-    console.log('result', result);
+    console.log('result', result); */
 
     //Approch2 - Update first
     //update first
     //get updated document(optional)
-
+    // /* This set is an mongodb update opeator | {new:true} is usedsothat we get the udated data an not original in console */
+    const course = await Course.findByIdAndUpdate(id,{
+        $set:{
+            author:'Aaron Nace',
+            isPublished:false
+        }
+    } , {new:true});
+    console.log('course', course);
 }
 
 // run when you want to update data in db
-updateCourse('5b7db1228e74cc51e52e1e51');
+updateCourse('5b7f079120c5d2159192b868');
 
 /* To run $node updatedata.js */
